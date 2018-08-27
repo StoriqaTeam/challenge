@@ -14,7 +14,7 @@ services:
     environment:
       - DATABASE_URL=postgres://challenge:challenge@db/challenge
     volumes:
-      - .:/app
+      - ..:/app
       - bundle-cache:/usr/local/bundle
     ports:
       - 3000:3000

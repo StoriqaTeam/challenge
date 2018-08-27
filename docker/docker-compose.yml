@@ -1,0 +1,38 @@
+version: "3"
+
+volumes:
+  bundle-cache:
+  postgres-data:
+networks:
+  challenge:
+
+services:
+  challenge:
+    build: .
+    image: challenge
+    command: ["bash", "-c", "rm tmp/pids/server.pid; bundle; bundle exec rails s"]
+    environment:
+      - DATABASE_URL=postgres://challenge:challenge@db/challenge
+    volumes:
+      - .:/app
+      - bundle-cache:/usr/local/bundle
+    ports:
+      - 3000:3000
+    networks:
+      - challenge
+    depends_on:
+      - db
+
+  db:
+    image: postgres:9.6.1
+    environment:
+      - POSTGRES_USER=challenge
+      - POSTGRES_PASSWORD=challenge
+      - POSTGRES_DB=challenge
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - .:/app
+    networks:
+      - challenge
+    ports:
+      - 5432:5432

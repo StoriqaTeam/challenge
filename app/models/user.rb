@@ -4,4 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   devise :omniauthable, omniauth_providers: %i[github]
+
+  def self.from_omniauth(data)
+    if data["provider"] == "github"
+      u = User.new
+      u.email = data.dig("info", "email")
+      u.provider = "github"
+      u.uid = data["uid"]
+      u
+    end
+  end
 end

@@ -13,19 +13,29 @@
 //= require jquery
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require materialize
 //= require_tree .
 
 $(document).ready(function () {
   $('select').material_select();
+  hljs.initHighlightingOnLoad();
 });
 
 challenge = {};
+challenge.highlight = function () {
+  $('pre code').each(function (i, block) {
+    hljs.highlightBlock(block);
+  });
+}
+challenge.renderCode = function (text, id) {
+  const elem = $("#" + id);
+  elem.html("<pre><code>" + text + "</code></pre>");
+  challenge.highlight();
+}
 challenge.renderMarkdown = function (text, id) {
-  const converter = new showdown.Converter({ extensions: ['highlightjs'] });
+  const converter = new showdown.Converter();
   const html = converter.makeHtml(text);
   const elem = $("#" + id);
   elem.html(html);
-  console.log(text);
+  challenge.highlight();
 }

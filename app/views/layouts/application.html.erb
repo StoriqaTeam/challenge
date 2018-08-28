@@ -5,10 +5,12 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/showdown-highlight@2.1.2/lib/index.min.js', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js' %>
   </head>
 
   <body>

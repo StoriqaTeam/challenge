@@ -14,7 +14,7 @@
         <%= label_tag(:description, "Description") %>
       </div>
       <div class="input-field">
-        <%= form.text_area :tests, class: "materialize-textarea", rows: "20" %>
+        <%= form.text_area :tests, class: "materialize-textarea", rows: "20", oninput: "challenge.renderCode(event.target.value, 'tests_preview')" %>
         <%= label_tag(:tests, "Tests") %>
       </div>
       
@@ -36,8 +36,10 @@
       
     </div>
     <div class="col s6 container z-depth-2">
-      <h5>Description preview</h5>
       <div id="description_preview" class="description-preview"></div>
+    </div>
+    <div class="col s6 container z-depth-2">
+      <div id="tests_preview" class="tests-preview"></div>
     </div>
   </div>
 <% end %>

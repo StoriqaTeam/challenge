@@ -1,26 +1,43 @@
 <%= form_with(model: task, local: true) do |form| %>
-  <%= label_tag(:title, "Title") %>
-  <%= form.text_field :title %>
-  <%= label_tag(:description, "Description") %>
-  <%= form.text_area :description, class: "materialize-textarea" %>
-  <%= label_tag(:tests, "Tests") %>
-  <%= form.text_area :tests, class: "materialize-textarea" %>
-  <%= label_tag(:language, "Language") %>
-  <%= form.select :language, [["Rust", 1], ["Javascript", 2]] %>
+  <div class="row">
+    <div class="col s6 container">
+      <div class="input-field">
+        <%= form.text_field :title %>
+        <%= label_tag(:title, "Title") %>
+      </div>
+      <div class="input-field">
+        <%= form.select :language, [["Rust", 1], ["Javascript", 2]] %>
+        <%= label_tag(:language, "Language") %>
+      </div>
+      <div class="input-field">
+        <%= form.text_area :description, class: "materialize-textarea", oninput: "challenge.renderMarkdown(event.target.value, 'description_preview')" %>
+        <%= label_tag(:description, "Description") %>
+      </div>
+      <div class="input-field">
+        <%= form.text_area :tests, class: "materialize-textarea", rows: "20" %>
+        <%= label_tag(:tests, "Tests") %>
+      </div>
+      
+      <% if task.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-  <% if task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
-
-      <ul>
-      <% task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% task.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="actions">
-    <%= form.submit "Create", class: "btn" %>
+      <div class="actions">
+        <%= form.submit "Create", class: "btn" %>
+      </div>
+      
+    </div>
+    <div class="col s6 container z-depth-2">
+      <h5>Description preview</h5>
+      <div id="description_preview" class="description-preview"></div>
+    </div>
   </div>
 <% end %>

@@ -20,3 +20,12 @@
 $(document).ready(function () {
   $('select').material_select();
 });
+
+challenge = {};
+challenge.renderMarkdown = function (text, id) {
+  const converter = new showdown.Converter({ extensions: ['highlightjs'] });
+  const html = converter.makeHtml(text);
+  const elem = $("#" + id);
+  elem.html(html);
+  console.log(text);
+}

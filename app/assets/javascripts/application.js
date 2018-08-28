@@ -20,6 +20,7 @@ $(document).ready(function () {
   $('select').material_select();
   hljs.initHighlightingOnLoad();
   challenge.bindPreviews();
+  challenge.bindEditors();
 });
 
 challenge = {};
@@ -31,6 +32,15 @@ challenge.bindPreviews = function () {
     $(elem).on('input', function () {
       challenge.renderMarkdown(elem.value, targetId)
     })
+  });
+}
+
+challenge.bindEditors = function () {
+  $('[data-editor]').each(function (i, elem) {
+    const lang = $(elem).data().editor;
+    var editor = ace.edit(elem.id);
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/" + lang);
   });
 }
 

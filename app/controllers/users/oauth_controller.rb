@@ -7,6 +7,7 @@ class Users::OauthController < Devise::OmniauthCallbacksController
     @user = if user
       user
     else
+      new_user.role = 'admin' if User.count == 0
       new_user.save!
       new_user
     end

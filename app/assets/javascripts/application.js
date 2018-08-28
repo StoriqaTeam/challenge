@@ -19,9 +19,21 @@
 $(document).ready(function () {
   $('select').material_select();
   hljs.initHighlightingOnLoad();
+  challenge.bindPreviews();
 });
 
 challenge = {};
+challenge.bindPreviews = function () {
+  $('[data-preview]').each(function (i, elem) {
+    const targetId = $(elem).data().preview;
+    challenge.renderMarkdown(elem.value, targetId);
+    $(elem).off('input');
+    $(elem).on('input', function () {
+      challenge.renderMarkdown(elem.value, targetId)
+    })
+  });
+}
+
 challenge.highlight = function () {
   $('pre code').each(function (i, block) {
     hljs.highlightBlock(block);

@@ -10,11 +10,11 @@
         <%= label_tag(:language, "Language") %>
       </div>
       <div class="input-field">
-        <%= form.text_area :description, class: "materialize-textarea", oninput: "challenge.renderMarkdown(event.target.value, 'description_preview')" %>
+        <%= form.text_area :description, class: "materialize-textarea", data: {preview: "description_preview"} %>
         <%= label_tag(:description, "Description") %>
       </div>
       <div class="input-field">
-        <%= form.text_area :tests, class: "materialize-textarea", rows: "20", oninput: "challenge.renderCode(event.target.value, 'tests_preview')" %>
+        <%= form.text_area :tests, class: "materialize-textarea", rows: "20", data: {preview: "tests_preview"} %>
         <%= label_tag(:tests, "Tests") %>
       </div>
       

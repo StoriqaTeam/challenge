@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_languages, only: [:new, :edit]
   before_action :authenticate_admin!
 
   # GET /tasks
@@ -70,6 +71,10 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :description, :tests, :language)
+      params.require(:task).permit(:title, :description, :tests, :language, :runtime, :initial)
+    end
+
+    def set_languages
+      @languages ||= [["Rust", "rust"], ["JavaScript", "javascript"], ["Swift", "swift"], ["Kotlin", "kotlin"], ["Java", "java"]]
     end
 end

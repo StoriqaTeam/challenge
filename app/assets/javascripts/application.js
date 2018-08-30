@@ -26,9 +26,17 @@ challenge.bindPreviews = function () {
 challenge.bindEditors = function () {
   $('[data-editor]').each(function (i, elem) {
     const lang = $(elem).data().editor;
-    var editor = ace.edit(elem.id);
+    const input_id = "#" + $(elem).data().input;
+    const editor = ace.edit(elem.id);
+    const initialValue = $(input_id).val();
+    if (initialValue) editor.setValue(initialValue);
     editor.setTheme("ace/theme/monokai");
     editor.session.setMode("ace/mode/" + lang);
+    editor.off('change');
+    editor.on('change', function (event, editor) {
+      const value = editor.getValue();
+      $(input_id).val(value);
+    })
   });
 }
 

@@ -6,8 +6,10 @@ $(document).ready(function () {
     const value = e.target.value;
     const lang = langToAceLang[value];
     if (!lang) console.error("Cannot find language: " + value);
-    $('#tests_editor').data({
-      editor: lang,
+    ['#tests_editor', '#runtime_editor', '#initial_editor'].forEach(function (id) {
+      $(id).data({
+        editor: lang,
+      });
     })
     challenge.bindEditors();
   })

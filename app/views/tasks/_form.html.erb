@@ -6,7 +6,7 @@
         <%= label_tag(:title, "Title") %>
       </div>
       <div class="input-field">
-        <%= form.select :language, [["Rust", "rust"], ["JavaScript", "javascript"]] %>
+        <%= form.select :language, @languages %>
         <%= label_tag(:language, "Language") %>
       </div>
       <div class="input-field">
@@ -14,9 +14,22 @@
         <%= label_tag(:description, "Description") %>
       </div>
 
-      <%= label_tag(:tests, "Tests") %>
-      <div id = "tests_editor", data-editor = "rust" style="width: 100%; height: 400px;"></div>
+      <%= label_tag(:runtime, "Runtime (invisible code above)") %>
+      <div id = "runtime_editor" data-input = "task_runtime" data-editor = "<%= @task.language || @languages.first %>" style="width: 100%; height: 400px;"></div>
+      <%= form.hidden_field(:runtime) %>
       <br />
+
+      <%= label_tag(:initial, "Initial (initial template seen by user)") %>
+      <div id = "initial_editor" data-input = "task_initial" data-editor = "<%= @task.language || @languages.first %>" style="width: 100%; height: 400px;"></div>
+      <%= form.hidden_field(:initial) %>
+      <br />
+
+      <%= label_tag(:tests, "Tests") %>
+      <div id = "tests_editor" data-input = "task_tests" data-editor = "<%= @task.language || @languages.first %>" style="width: 100%; height: 400px;"></div>
+      <%= form.hidden_field(:tests) %>
+      <br />
+
+
 
       <% if task.errors.any? %>
         <div id="error_explanation">
@@ -31,7 +44,7 @@
       <% end %>
 
       <div class="actions">
-        <%= form.submit "Create", class: "btn" %>
+        <%= form.submit "Submit", class: "btn" %>
       </div>
       
 

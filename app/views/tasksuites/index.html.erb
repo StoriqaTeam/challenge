@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tasksuites</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Suite</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasksuites.each do |tasksuite| %>
+      <tr>
+        <td><%= tasksuite.task_id %></td>
+        <td><%= tasksuite.suite_id %></td>
+        <td><%= link_to 'Show', tasksuite %></td>
+        <td><%= link_to 'Edit', edit_tasksuite_path(tasksuite) %></td>
+        <td><%= link_to 'Destroy', tasksuite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tasksuite', new_tasksuite_path %>

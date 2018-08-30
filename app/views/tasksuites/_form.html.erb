@@ -1,0 +1,27 @@
+<%= form_with(model: tasksuite, local: true) do |form| %>
+  <% if tasksuite.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tasksuite.errors.count, "error") %> prohibited this tasksuite from being saved:</h2>
+
+      <ul>
+      <% tasksuite.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :task_id %>
+    <%= form.number_field :task_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :suite_id %>
+    <%= form.number_field :suite_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

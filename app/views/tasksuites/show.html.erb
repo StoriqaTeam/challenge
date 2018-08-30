@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @tasksuite.task_id %>
+</p>
+
+<p>
+  <strong>Suite:</strong>
+  <%= @tasksuite.suite_id %>
+</p>
+
+<%= link_to 'Edit', edit_tasksuite_path(@tasksuite) %> |
+<%= link_to 'Back', tasksuites_path %>

@@ -1,0 +1,2 @@
+class Tasksuite < ApplicationRecord
+end

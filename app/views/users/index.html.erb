@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
+<h3>Users</h3>
 
 <table>
   <thead>
@@ -15,9 +15,10 @@
       <tr>
         <td><%= user.email %></td>
         <td><%= user.role %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to 'Edit', edit_user_path(user), class: "btn blue" %>
+          <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn red" %>
+        </td>
       </tr>
     <% end %>
   </tbody>

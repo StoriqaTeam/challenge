@@ -21,6 +21,17 @@
   </head>
 
   <body>
+    <% if is_admin %>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo center">Challenge</a>
+        <ul id="nav-mobile" class="hide-on-med-and-down">
+          <li><a href="/tasks">Tasks</a></li>
+          <li><a href="/profiles">Profiles</a></li>
+        </ul>
+      </div>
+    </nav>
+    <% end %>
     <%= yield %>
   </body>
 </html>

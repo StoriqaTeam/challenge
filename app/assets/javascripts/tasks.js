@@ -2,10 +2,14 @@
 // All this logic will automatically be available in application.js.
 
 $(document).ready(function () {
-  $('#task_language').on('change', function(e) {
+  $('#task_language').on('change', function (e) {
     const value = e.target.value;
     const lang = langToAceLang[value];
-    
+    if (!lang) console.error("Cannot find language: " + value);
+    $('#tests_editor').data({
+      editor: lang,
+    })
+    challenge.bindEditors();
   })
 });
 

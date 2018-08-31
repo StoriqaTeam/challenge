@@ -9,9 +9,18 @@ $(document).ready(function () {
   hljs.initHighlightingOnLoad();
   challenge.bindPreviews();
   challenge.bindEditors();
+  challenge.renderNotice();
 });
 
 challenge = {};
+
+challenge.renderNotice = function () {
+  const notice = $('#notice').text();
+  if (notice) {
+    Materialize.toast(notice, 2000);
+  }
+}
+
 challenge.bindPreviews = function () {
   $('[data-preview]').each(function (i, elem) {
     const targetId = $(elem).data().preview;

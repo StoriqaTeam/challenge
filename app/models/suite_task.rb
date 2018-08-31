@@ -1,0 +1,2 @@
+class SuiteTask < ApplicationRecord
+end

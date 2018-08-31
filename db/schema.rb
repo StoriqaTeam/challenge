@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_31_095402) do
+ActiveRecord::Schema.define(version: 2018_08_31_121625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2018_08_31_095402) do
     t.boolean "graded", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "suite_id"
   end
 
   create_table "suite_tasks", force: :cascade do |t|
@@ -43,10 +45,12 @@ ActiveRecord::Schema.define(version: 2018_08_31_095402) do
   end
 
   create_table "task_solutions", force: :cascade do |t|
-    t.integer "suite_solution"
+    t.integer "suite_solution_id"
     t.text "solution"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "started_at"
+    t.integer "time"
   end
 
   create_table "tasks", force: :cascade do |t|

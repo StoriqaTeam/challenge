@@ -1,0 +1,2 @@
+class TaskSolutionTest < ApplicationRecord
+end

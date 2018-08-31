@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_31_080926) do
+ActiveRecord::Schema.define(version: 2018_08_31_095402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "suite_solutions", force: :cascade do |t|
+    t.integer "score", default: 0
+    t.boolean "graded", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "suite_tasks", force: :cascade do |t|
     t.integer "task_id"
@@ -28,6 +35,20 @@ ActiveRecord::Schema.define(version: 2018_08_31_080926) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "task_solution_tests", force: :cascade do |t|
+    t.integer "task_solution_id"
+    t.boolean "result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "task_solutions", force: :cascade do |t|
+    t.integer "suite_solution"
+    t.text "solution"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -37,6 +58,7 @@ ActiveRecord::Schema.define(version: 2018_08_31_080926) do
     t.string "language"
     t.text "runtime"
     t.text "initial"
+    t.integer "time"
   end
 
   create_table "users", force: :cascade do |t|

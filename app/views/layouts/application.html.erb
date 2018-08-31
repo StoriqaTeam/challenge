@@ -26,9 +26,10 @@
       <div class="nav-wrapper">
         <a href="/" class="brand-logo center">Challenge</a>
         <ul id="nav-mobile" class="hide-on-med-and-down">
+          <li><a href="/profiles">Profiles</a></li>
           <li><a href="/suites">Suites</a></li>
           <li><a href="/tasks">Tasks</a></li>
-          <li><a href="/profiles">Profiles</a></li>
+          <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
         </ul>
       </div>
     </nav>

@@ -1,0 +1,2 @@
+module SuiteSolutionsHelper
+end

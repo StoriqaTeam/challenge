@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resources :suite_solutions, only: [:index, :new, :create, :destroy], controller: "profiles/suite_solutions"
   end
   devise_for :users, controllers: { omniauth_callbacks: 'users/oauth' }
+  get '/start', to: 'suite_solutions#start', as: :suite_solutions_start
   root 'users#index'
 end

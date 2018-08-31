@@ -1,5 +1,15 @@
 class ApplicationController < ActionController::Base
   helper_method :is_admin
+  
+  def home
+    if is_admin
+      reditect_to users_path
+    elsif user_signed_in?
+      redirect_to suite_solutions_start_path
+    else
+      authenticate_user!
+    end
+  end
 
   protected
     def is_admin

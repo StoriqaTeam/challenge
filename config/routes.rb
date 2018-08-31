@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   end
   devise_for :users, controllers: { omniauth_callbacks: 'users/oauth' }
   get '/start', to: 'suite_solutions#start', as: :suite_solutions_start
-  root 'users#index'
+  get '/welcome', to: 'suite_solutions#welcome', as: :suite_solutions_welcome
+  get '/go', to: 'suite_solutions#go', as: :suite_solutions_go
+  root 'suite_solutions#start'
 end

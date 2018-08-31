@@ -1,4 +1,5 @@
 class SuitesController < ApplicationController
+  before_action :authenticate_admin!
   before_action :set_suite, only: [:show, :edit, :update, :destroy]
 
   # GET /suites

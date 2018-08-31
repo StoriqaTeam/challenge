@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
+  before_action :authenticate_admin!
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :set_languages, only: [:new, :edit]
-  before_action :authenticate_admin!
 
   # GET /tasks
   # GET /tasks.json

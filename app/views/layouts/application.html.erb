@@ -15,9 +15,25 @@
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.1/theme-monokai.js' %>
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.1/mode-rust.js' %>  
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.1/mode-javascript.js' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.1/mode-swift.js' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.1/mode-java.js' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.1/mode-kotlin.js' %>
   </head>
 
   <body>
+    <% if is_admin %>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo center">Challenge</a>
+        <ul id="nav-mobile" class="hide-on-med-and-down">
+          <li><a href="/profiles">Profiles</a></li>
+          <li><a href="/suites">Suites</a></li>
+          <li><a href="/tasks">Tasks</a></li>
+          <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+        </ul>
+      </div>
+    </nav>
+    <% end %>
     <%= yield %>
   </body>
 </html>

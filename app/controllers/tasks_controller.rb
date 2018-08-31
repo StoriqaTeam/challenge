@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_languages, only: [:new, :edit]
   before_action :authenticate_admin!
 
   # GET /tasks
@@ -29,7 +30,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html { redirect_to tasks_url, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -43,7 +44,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to tasks_url, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -70,6 +71,10 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :description, :tests, :language)
+      params.require(:task).permit(:title, :description, :tests, :language, :runtime, :initial)
+    end
+
+    def set_languages
+      @languages ||= [["Rust", "rust"], ["JavaScript", "javascript"], ["Swift", "swift"], ["Kotlin", "kotlin"], ["Java", "java"]]
     end
 end

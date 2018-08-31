@@ -1,15 +1,3 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, or any plugin's
-// vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file. JavaScript code in this file should be added after the last require_* statement.
-//
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
-//
 //= require jquery
 //= require rails-ujs
 //= require activestorage
@@ -21,9 +9,18 @@ $(document).ready(function () {
   hljs.initHighlightingOnLoad();
   challenge.bindPreviews();
   challenge.bindEditors();
+  challenge.renderNotice();
 });
 
 challenge = {};
+
+challenge.renderNotice = function () {
+  const notice = $('#notice').text();
+  if (notice) {
+    Materialize.toast(notice, 2000);
+  }
+}
+
 challenge.bindPreviews = function () {
   $('[data-preview]').each(function (i, elem) {
     const targetId = $(elem).data().preview;
@@ -38,9 +35,17 @@ challenge.bindPreviews = function () {
 challenge.bindEditors = function () {
   $('[data-editor]').each(function (i, elem) {
     const lang = $(elem).data().editor;
-    var editor = ace.edit(elem.id);
+    const input_id = "#" + $(elem).data().input;
+    const editor = ace.edit(elem.id);
+    const initialValue = $(input_id).val();
+    if (initialValue) editor.setValue(initialValue);
     editor.setTheme("ace/theme/monokai");
     editor.session.setMode("ace/mode/" + lang);
+    editor.off('change');
+    editor.on('change', function (event, editor) {
+      const value = editor.getValue();
+      $(input_id).val(value);
+    })
   });
 }
 

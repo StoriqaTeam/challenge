@@ -1,0 +1,22 @@
+<%= form_with(model: suite_task, local: true) do |form| %>
+  <% if suite_task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(suite.errors.count, "error") %> prohibited this suite task from being saved:</h2>
+
+      <ul>
+      <% suite.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-field">
+  <%= form.select :task_id, @task_options %>
+  <%= label_tag(:task_id, "Task") %>
+</div>
+
+  <div class="actions">
+    <%= form.submit "Submit", class: "btn" %>
+  </div>
+<% end %>

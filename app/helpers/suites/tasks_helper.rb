@@ -1,0 +1,2 @@
+module Suites::TasksHelper
+end

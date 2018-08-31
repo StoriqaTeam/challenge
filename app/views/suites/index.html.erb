@@ -1,6 +1,6 @@
 <p id="notice" class="hide"><%= notice %></p>
 
-<h1>Suites</h1>
+<h3>Suites</h3>
 
 <table>
   <thead>
@@ -16,6 +16,7 @@
         <td><%= suite.name %></td>
         <td>
           <%= link_to 'Edit', edit_suite_path(suite), class: "btn blue" %>
+          <%= link_to 'Edit Tasks', suite_tasks_path(suite), class: "btn light-blue darken-3" %>
           <%= link_to 'Delete', suite, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn red" %>
         </td>
       </tr>

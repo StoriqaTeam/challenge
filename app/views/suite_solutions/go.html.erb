@@ -1,15 +1,27 @@
 <div class="go-container">
   <div class="row">
     <div class="col s6">
+      <h5 class="">Task preview</h5>
       <%= hidden_field :hidden, :description, value: @task_solution.task.description, data: {preview: "description_preview"}%>
-      <div id="description_preview"></div>
+      <div id="description_preview" class="description-container"></div>
+      <br />
+      <h5 class="">Tests output</h5>
+      <div class="output-container"></div>
     </div>
     <div class="col s6">
       <%= form_with(model: @task_solution, local: true) do |form| %>
-        <%= label_tag(:solution, "Your solution") %>
+        <h5 class="">Your solution</h5>
         <div id = "solution_editor" data-input = "solution" data-editor = "<%= @task_solution.task.language %>" class="solution-container"></div>
         <%= form.hidden_field(:solution) %>
         <br />
+        <h5 class="">Tests for your solution</h5>
+        <div id = "solution_tests_editor" data-input = "solution_tests" data-editor = "<%= @task_solution.task.language %>" class="solution-tests-container"></div>
+        <%= form.hidden_field(:solution_tests) %>
+        <br />
+        <div class="actions right">
+          <%= button_tag "Run tests", class: "btn blue" %>
+          <%= form.submit "Submit", class: "btn" %>
+        </div>
       <%end%>
     </div>
   </div>

@@ -37,9 +37,9 @@ challenge.bindEditors = function () {
     const lang = $(elem).data().editor;
     const input_id = "#" + $(elem).data().input;
     const editor = ace.edit(elem.id);
+    editor.setTheme('ace/theme/chrome');
     const initialValue = $(input_id).val();
     if (initialValue) editor.setValue(initialValue);
-    editor.setTheme("ace/theme/monokai");
     editor.session.setMode("ace/mode/" + lang);
     editor.off('change');
     editor.on('change', function (event, editor) {

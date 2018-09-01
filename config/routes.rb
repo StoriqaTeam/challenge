@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   get '/start', to: 'suite_solutions#start', as: :suite_solutions_start
   get '/welcome', to: 'suite_solutions#welcome', as: :suite_solutions_welcome
   get '/go', to: 'suite_solutions#go', as: :suite_solutions_go
-  root 'suite_solutions#start'
+  root 'application#home'
 end

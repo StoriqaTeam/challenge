@@ -9,3 +9,12 @@ body {
 .container {
   padding: 2rem !important;
 }
+
+.brand-logo {
+  margin-left: 1rem;
+  svg {
+    path {
+      fill: white;
+    }  
+  }
+}

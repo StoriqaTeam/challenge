@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   
   def home
     if is_admin
-      reditect_to users_path
+      redirect_to users_path
     elsif user_signed_in?
       redirect_to suite_solutions_start_path
     else

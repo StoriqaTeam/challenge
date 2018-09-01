@@ -15,8 +15,19 @@ class SuiteSolutionsController < ApplicationController
   end
 
   def go
-    redirect_to suite_solutions_welcome_path unless @solution
+    unless @solution
+      redirect_to suite_solutions_welcome_path
+      return
+    end
     @solution.update!({ started: true })
+    @task_solution = @solution.active_task_solutions.first
+    unless @task_solution
+      redirect_to suite_solutions_finish_path
+      return
+    end
+  end
+
+  def finish
   end
 
   private

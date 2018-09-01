@@ -4,6 +4,10 @@ class SuiteSolution < ApplicationRecord
 
   after_save :create_task_solutions
 
+  def active_task_solutions
+    task_solutions.select(&:is_active)
+  end
+
   private
     def create_task_solutions
       task_ids = task_solutions.map { |solution| solution.task_id }

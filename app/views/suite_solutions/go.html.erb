@@ -1,0 +1,16 @@
+<div class="go-container">
+  <div class="row">
+    <div class="col s6">
+      <%= hidden_field :hidden, :description, value: @task_solution.task.description, data: {preview: "description_preview"}%>
+      <div id="description_preview"></div>
+    </div>
+    <div class="col s6">
+      <%= form_with(model: @task_solution, local: true) do |form| %>
+        <%= label_tag(:solution, "Your solution") %>
+        <div id = "solution_editor" data-input = "solution" data-editor = "<%= @task_solution.task.language %>" class="solution-container"></div>
+        <%= form.hidden_field(:solution) %>
+        <br />
+      <%end%>
+    </div>
+  </div>
+</div>

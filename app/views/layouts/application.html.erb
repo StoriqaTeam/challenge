@@ -21,28 +21,34 @@
   </head>
 
   <body>
-    <% if is_admin %>
-    <nav>
-      <div class="nav-wrapper light-blue darken-1">
-        <a href="/" class="brand-logo"><%= inline_svg "logo.svg"%></a>
-        <ul id="nav-mobile" class="hide-on-med-and-down right">
-          <li><a href="/profiles">Profiles</a></li>
-          <li><a href="/suites">Suites</a></li>
-          <li><a href="/tasks">Tasks</a></li>
-          <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
-        </ul>
-      </div>
-    </nav>
-    <% elsif @with_navbar %>
-    <nav>
-      <div class="nav-wrapper light-blue darken-1">
-        <a href="/" class="brand-logo"><%= inline_svg "logo.svg"%></a>
-        <ul id="nav-mobile" class="hide-on-med-and-down right">
-          <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
-        </ul>
-      </div>
-    </nav>
-    <% end %>
-    <%= yield %>
+    <div class="background">
+      <%= image_tag "backleft.png"%>
+      <%= image_tag "backright.png", class: "right"%>
+    </div>
+    <div class="main-container">
+      <% if is_admin %>
+      <nav>
+        <div class="nav-wrapper light-blue darken-1">
+          <a href="/" class="brand-logo"><%= inline_svg "logo.svg"%></a>
+          <ul id="nav-mobile" class="hide-on-med-and-down right">
+            <li><a href="/profiles">Profiles</a></li>
+            <li><a href="/suites">Suites</a></li>
+            <li><a href="/tasks">Tasks</a></li>
+            <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+          </ul>
+        </div>
+      </nav>
+      <% elsif @with_navbar %>
+      <nav>
+        <div class="nav-wrapper light-blue darken-1">
+          <a href="/" class="brand-logo"><%= inline_svg "logo.svg"%></a>
+          <ul id="nav-mobile" class="hide-on-med-and-down right">
+            <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+          </ul>
+        </div>
+      </nav>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>

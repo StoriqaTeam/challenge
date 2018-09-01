@@ -1,0 +1,2 @@
+class TaskSolutionsController < ApplicationController
+end

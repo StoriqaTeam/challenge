@@ -24,12 +24,15 @@
       <%= form.hidden_field(:initial) %>
       <br />
 
+      <%= label_tag(:initial_tests, "Initial tests") %>
+      <div id = "initial_tests_editor" data-input = "task_initial_tests" data-editor = "<%= @task.language || @languages.first %>" style="width: 100%; height: 400px;"></div>
+      <%= form.hidden_field(:initial_tests) %>
+      <br />
+
       <%= label_tag(:tests, "Tests") %>
       <div id = "tests_editor" data-input = "task_tests" data-editor = "<%= @task.language || @languages.first %>" style="width: 100%; height: 400px;"></div>
       <%= form.hidden_field(:tests) %>
       <br />
-
-
 
       <% if task.errors.any? %>
         <div id="error_explanation">

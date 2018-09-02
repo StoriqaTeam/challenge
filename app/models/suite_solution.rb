@@ -15,7 +15,13 @@ class SuiteSolution < ApplicationRecord
       to_create_ids = suite_task_ids - task_ids
       ActiveRecord::Base.transaction do
         to_create_ids.each do |task_id|
-          TaskSolution.create({ task_id: task_id, suite_solution_id: id })
+          task = Task.find(task_id)
+          TaskSolution.create({
+            task_id: task_id,
+            suite_solution_id: id,
+            solution: task.initial,
+            tests: task.initial_tests,
+          })
         end
       end
     end

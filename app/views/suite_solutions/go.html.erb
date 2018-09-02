@@ -11,12 +11,12 @@
     <div class="col s6">
       <%= form_with(model: @task_solution, local: true) do |form| %>
         <h5 class="">Your solution</h5>
-        <div id = "solution_editor" data-input = "solution" data-editor = "<%= @task_solution.task.language %>" class="solution-container"></div>
+        <div id = "solution_editor" data-input = "task_solution_solution" data-editor = "<%= @task_solution.task.language %>" class="solution-container"></div>
         <%= form.hidden_field(:solution) %>
         <br />
         <h5 class="">Tests for your solution</h5>
-        <div id = "solution_tests_editor" data-input = "solution_tests" data-editor = "<%= @task_solution.task.language %>" class="solution-tests-container"></div>
-        <%= form.hidden_field(:solution_tests) %>
+        <div id = "solution_tests_editor" data-input = "task_solution_tests" data-editor = "<%= @task_solution.task.language %>" class="solution-tests-container"></div>
+        <%= form.hidden_field(:tests) %>
         <br />
         <div class="actions right">
           <%= button_tag "Run tests", class: "btn blue" %>

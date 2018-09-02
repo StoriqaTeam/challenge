@@ -66,3 +66,24 @@ challenge.renderMarkdown = function (text, id) {
   elem.html(html);
   challenge.highlight();
 }
+
+challenge.onRunTestsClick = function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  const id = $("#task_solution_id").val();
+  const solution = $("#task_solution_solution").val();
+  const tests = $("#task_solution_tests").val();
+  $('#run_tests_button').attr('disabled', true);
+  $.ajax({
+    method: "POST",
+    url: "/try",
+    data: { id: parseInt(id, 10), code: solution + '\n' + tests }
+  })
+  .done(function( msg ) {
+    $('#run_tests_button').attr('disabled', false);
+  })
+  .fail(function( e ) {
+    $('#run_tests_button').attr('disabled', false);
+    alert("Error");
+  });
+}

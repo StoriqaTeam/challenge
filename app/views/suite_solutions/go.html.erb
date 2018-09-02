@@ -10,6 +10,7 @@
     </div>
     <div class="col s6">
       <%= form_with(model: @task_solution, local: true) do |form| %>
+        <%= form.hidden_field :id, value: @task_solution.id %>
         <h5 class="">Your solution</h5>
         <div id = "solution_editor" data-input = "task_solution_solution" data-editor = "<%= @task_solution.task.language %>" class="solution-container"></div>
         <%= form.hidden_field(:solution) %>
@@ -19,7 +20,7 @@
         <%= form.hidden_field(:tests) %>
         <br />
         <div class="actions right">
-          <%= button_tag "Run tests", class: "btn blue" %>
+          <%= button_tag "Run tests", id:"run_tests_button", class: "btn blue", onclick: "challenge.onRunTestsClick(event)" %>
           <%= form.submit "Submit", class: "btn" %>
         </div>
       <%end%>

@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   get '/welcome', to: 'suite_solutions#welcome', as: :suite_solutions_welcome
   get '/go', to: 'suite_solutions#go', as: :suite_solutions_go
   get '/finish', to: 'suite_solutions#finish', as: :suite_solutions_finish
+  post '/try', to: 'task_solutions#run_tests', as: :task_solutions_run_tests
   root 'application#home'
+  
 end

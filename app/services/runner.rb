@@ -13,9 +13,11 @@ class Runner
 
   def self.grade(task_solution)
     runner = self.from_lang(task_solution.task.language)
-    program = task_solution.runtime + "\n" + task_solution.solution + "\n" + task_solution.task.tests
+    program = task_solution.task.runtime + "\n" + task_solution.solution + "\n" + task_solution.task.tests
     res = []
-    output = run(program)
+    output = runner.run(program)
+    puts "Output:"
+    p output
     output.split("\n").each do |line|
       matches = GRADE_REGEX.match(line)
       if matches
@@ -23,6 +25,10 @@ class Runner
         passed = matches[2] == "ok"
         res << TaskSolutionResult.new(name: name, passed: passed, task_solution_id: task_solution.id)
       end
+    end
+    # The program didn't compile
+    if res.count == 0
+      res << TaskSolutionResult.new(name: "Compilation", passed: false, task_solution_id: task_solution.id)
     end
     res
   end

@@ -12,9 +12,7 @@ class TaskSolution < ApplicationRecord
   def grade
     # already graded
     return unless task_solution_results.count == 0
-    ActiveRecord::Base.transaction do
-      task_results = Runner.grade(task)
-      task_results.each {|res| res.save}
-    end
+    task_results = Runner.grade(self)
+    task_results.each {|res| res.save}
   end
 end

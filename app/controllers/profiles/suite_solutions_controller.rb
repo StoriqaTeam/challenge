@@ -17,6 +17,7 @@ class Profiles::SuiteSolutionsController < ApplicationController
 
   def grade
     @suite_solution.grade
+    redirect_to user_suite_solution_path(@user, @suite_solution)
   end
 
 

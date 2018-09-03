@@ -1,0 +1,32 @@
+<p id="notice" class="hide"><%= notice %></p>
+
+<h3>Suites for user `<%= @user.email %>`</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Score</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @suite_solutions.each do |suite_solution| %>
+      <tr>
+        <td><%= suite_solution.suite.name %></td>
+        <td><%= suite_solution.score %></td>
+        <td>
+          <%= link_to 'Show', user_suite_solution_path(@user, suite_solution), class: "btn cyan" %>
+          <%= link_to 'Delete', user_suite_solution_path(@user, suite_solution), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn red" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to new_user_suite_solution_path, class: "btn-floating btn-large waves-effect waves-light red" do %>
+  <i class="material-icons">add</i>
+<% end %>

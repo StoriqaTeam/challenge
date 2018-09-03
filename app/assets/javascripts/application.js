@@ -37,9 +37,9 @@ challenge.bindEditors = function () {
     const lang = $(elem).data().editor;
     const input_id = "#" + $(elem).data().input;
     const editor = ace.edit(elem.id);
+    editor.setTheme('ace/theme/chrome');
     const initialValue = $(input_id).val();
     if (initialValue) editor.setValue(initialValue);
-    editor.setTheme("ace/theme/monokai");
     editor.session.setMode("ace/mode/" + lang);
     editor.off('change');
     editor.on('change', function (event, editor) {
@@ -65,4 +65,30 @@ challenge.renderMarkdown = function (text, id) {
   const elem = $("#" + id);
   elem.html(html);
   challenge.highlight();
+}
+
+challenge.onRunTestsClick = function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  const id = $("#task_solution_id").val();
+  const solution = $("#task_solution_solution").val();
+  const tests = $("#task_solution_tests").val();
+  $('#run_tests_button').attr('disabled', true);
+  $.ajax({
+    method: "POST",
+    url: "/try",
+    data: { id: parseInt(id, 10), code: solution + '\n' + tests }
+  })
+    .done(function (resp) {
+      $('#run_tests_button').attr('disabled', false);
+      if (resp.output) {
+        const lines = resp.output.split('\n').map((line) => "<div>" + line + "</div>")
+        const html = lines.join('\n');
+        $('#output_container').html(html);
+      }
+    })
+    .fail(function (e) {
+      $('#run_tests_button').attr('disabled', false);
+      alert("Error");
+    });
 }

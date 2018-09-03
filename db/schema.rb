@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_31_080926) do
+ActiveRecord::Schema.define(version: 2018_09_03_141050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "suite_solutions", force: :cascade do |t|
+    t.integer "score", default: 0
+    t.boolean "graded", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "suite_id"
+    t.boolean "started", default: false
+  end
 
   create_table "suite_tasks", force: :cascade do |t|
     t.integer "task_id"
@@ -28,6 +38,26 @@ ActiveRecord::Schema.define(version: 2018_08_31_080926) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "task_solution_results", force: :cascade do |t|
+    t.string "name"
+    t.boolean "passed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "task_solution_id"
+  end
+
+  create_table "task_solutions", force: :cascade do |t|
+    t.integer "suite_solution_id"
+    t.text "solution"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "started_at"
+    t.integer "task_id"
+    t.text "tests"
+    t.integer "score"
+    t.boolean "submitted", default: false
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -37,6 +67,8 @@ ActiveRecord::Schema.define(version: 2018_08_31_080926) do
     t.string "language"
     t.text "runtime"
     t.text "initial"
+    t.integer "time"
+    t.text "initial_tests"
   end
 
   create_table "users", force: :cascade do |t|

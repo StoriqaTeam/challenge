@@ -1,0 +1,6 @@
+<h1>Welcome</h1>
+<% if @error_message %>
+  <div><%=@error_message%></div>
+<% else %>
+  <%= link_to 'Start', suite_solutions_go_path, class: 'btn green' %>
+<% end %>

@@ -13,6 +13,10 @@ class Profiles::SuiteSolutionsController < ApplicationController
   end
 
   def show
+    score = @suite_solution.task_solutions.map(&:score).sum
+    count = @suite_solution.task_solutions.count
+    return 0 if count == 0
+    @total_score = (score.to_f / count.to_f).to_i
   end
 
   def grade

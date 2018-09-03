@@ -15,4 +15,11 @@ class TaskSolution < ApplicationRecord
     task_results = Runner.grade(self)
     task_results.each {|res| res.save}
   end
+
+  def score
+    successes = task_solution_results.select(&:passed).count
+    total = task_solution_results.count
+    return 0 if total == 0
+    (successes.to_f / total.to_f * 100).to_i
+  end
 end

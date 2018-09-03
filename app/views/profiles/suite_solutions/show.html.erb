@@ -2,4 +2,19 @@
   <p>This solution is not graded</p>
   <%= link_to 'Grade now', user_suite_solutions_grade_path(@user.id, @suite_solution), class: "btn"%>
 <%else%>
+  <h3><%=@suite_solution.suite.name%> for `<%=@user.email%>`</h3>
+  <p>created at `<%= @suite_solution.created_at %>`</p>
+  <%for task_solution in @suite_solution.task_solutions%>
+    <h5>Task `<%=task_solution.task.title%>`</h5>
+    <%for res in task_solution.task_solution_results%>
+      <span><%=res.name%>:&nbsp</span>
+      <span><%=res.passed ? 1 : 0 %></span>
+      <br />
+    <%end%>
+    <span>Score:&nbsp</span>
+    <span><%=task_solution.score%></span>
+    <br /> 
+  <%end%>
+  <span>Total score:&nbsp</span>
+  <span><%=@total_score%></span>    
 <%end%>

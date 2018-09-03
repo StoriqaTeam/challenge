@@ -11,7 +11,7 @@ class SuiteSolution < ApplicationRecord
   def score
     score = task_solutions.map(&:score).sum
     count = task_solutions.count
-    return nil if count == 0
+    return nil if count == 0 || !graded
     (score.to_f / count.to_f).to_i
   end
 

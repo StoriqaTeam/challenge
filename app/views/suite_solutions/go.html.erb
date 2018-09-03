@@ -3,20 +3,20 @@
     <div class="col s6">
       <h5 class="">Task preview</h5>
       <%= hidden_field :hidden, :description, value: @task_solution.task.description, data: {preview: "description_preview"}%>
-      <div id="description_preview" class="description-container"></div>
+      <div id="description_preview" class="description-container z-depth-2"></div>
       <br />
       <h5 class="">Tests output</h5>
-      <div id ="output_container" class="output-container"></div>
+      <div id ="output_container" class="output-container z-depth-2"></div>
     </div>
     <div class="col s6">
       <%= form_with(model: @task_solution, local: true) do |form| %>
         <%= form.hidden_field :id, value: @task_solution.id %>
         <h5 class="">Your solution</h5>
-        <div id = "solution_editor" data-input = "task_solution_solution" data-editor = "<%= @task_solution.task.language %>" class="solution-container"></div>
+        <div id = "solution_editor" data-input = "task_solution_solution" data-editor = "<%= @task_solution.task.language %>" class="solution-container z-depth-2"></div>
         <%= form.hidden_field(:solution) %>
         <br />
         <h5 class="">Tests for your solution</h5>
-        <div id = "solution_tests_editor" data-input = "task_solution_tests" data-editor = "<%= @task_solution.task.language %>" class="solution-tests-container"></div>
+        <div id = "solution_tests_editor" data-input = "task_solution_tests" data-editor = "<%= @task_solution.task.language %>" class="solution-tests-container z-depth-2"></div>
         <%= form.hidden_field(:tests) %>
         <br />
         <div class="actions right">

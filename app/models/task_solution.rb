@@ -5,8 +5,8 @@ class TaskSolution < ApplicationRecord
 
   def is_active
     return true unless started_at
-    return false if solution
-    return (Time.current - started_at).minutes <= task.time
+    return false if self.submitted
+    return (Time.current - started_at) / 60 <= task.time
   end
 
   def grade

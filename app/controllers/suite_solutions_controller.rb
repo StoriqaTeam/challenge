@@ -25,7 +25,7 @@ class SuiteSolutionsController < ApplicationController
       redirect_to suite_solutions_finish_path
       return
     end
-    @task_solution.update({ started_at: Time.now })
+    @task_solution.update({ started_at: Time.now }) unless @task_solution.started_at
   end
 
   def finish

@@ -11,7 +11,7 @@ class TaskSolutionsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @task_solution.update(task_solution_params)
+      if @task_solution.update(task_solution_params.merge({ submitted: true }))
         format.html { redirect_to suite_solutions_go_url, notice: 'Task was successfully submitted.' }
         format.json { render :show, status: :ok, location: @task_solution }
       else

@@ -8,6 +8,13 @@ class SuiteSolution < ApplicationRecord
     task_solutions.select(&:is_active)
   end
 
+  def score
+    score = task_solutions.map(&:score).sum
+    count = task_solutions.count
+    return nil if count == 0
+    (score.to_f / count.to_f).to_i
+  end
+
   def grade
     ActiveRecord::Base.transaction do
       task_solutions.each {|task_solution| task_solution.grade}

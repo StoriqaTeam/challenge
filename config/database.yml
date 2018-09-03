@@ -4,7 +4,7 @@ default: &default
   pool: 5
   username: challenge
   password: challenge
-  host: db
+  host: localhost
   timeout: 5000
 
 development:

@@ -67,7 +67,7 @@ challenge.renderMarkdown = function (text, id) {
   challenge.highlight();
 }
 
-challenge.onRunTestsClick = function(e) {
+challenge.onRunTestsClick = function (e) {
   e.preventDefault();
   e.stopPropagation();
   const id = $("#task_solution_id").val();
@@ -79,11 +79,16 @@ challenge.onRunTestsClick = function(e) {
     url: "/try",
     data: { id: parseInt(id, 10), code: solution + '\n' + tests }
   })
-  .done(function( msg ) {
-    $('#run_tests_button').attr('disabled', false);
-  })
-  .fail(function( e ) {
-    $('#run_tests_button').attr('disabled', false);
-    alert("Error");
-  });
+    .done(function (resp) {
+      $('#run_tests_button').attr('disabled', false);
+      if (resp.output) {
+        const lines = resp.output.split('\n').map((line) => "<div>" + line + "</div>")
+        const html = lines.join('\n');
+        $('#output_container').html(html);
+      }
+    })
+    .fail(function (e) {
+      $('#run_tests_button').attr('disabled', false);
+      alert("Error");
+    });
 }

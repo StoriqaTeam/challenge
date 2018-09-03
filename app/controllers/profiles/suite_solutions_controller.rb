@@ -1,7 +1,7 @@
 class Profiles::SuiteSolutionsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_user
-  before_action :set_suite_solution, only: [:destroy, :show]
+  before_action :set_suite_solution, only: [:destroy, :show, :grade]
 
   def index
     @suite_solutions = SuiteSolution.includes(:suite).where(user_id: @user.id)
@@ -16,6 +16,7 @@ class Profiles::SuiteSolutionsController < ApplicationController
   end
 
   def grade
+    @suite_solution.grade
   end
 
 

@@ -1,0 +1,2 @@
+class TaskSolutionResult < ApplicationRecord
+end

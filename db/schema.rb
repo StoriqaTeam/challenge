@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_02_184252) do
+ActiveRecord::Schema.define(version: 2018_09_03_122734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 2018_09_02_184252) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "task_solution_results", force: :cascade do |t|
+    t.string "name"
+    t.boolean "passed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "task_solution_tests", force: :cascade do |t|
     t.integer "task_solution_id"
     t.boolean "result"
@@ -53,6 +60,7 @@ ActiveRecord::Schema.define(version: 2018_09_02_184252) do
     t.datetime "started_at"
     t.integer "task_id"
     t.text "tests"
+    t.integer "score"
   end
 
   create_table "tasks", force: :cascade do |t|

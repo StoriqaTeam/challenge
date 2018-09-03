@@ -25,6 +25,7 @@ class SuiteSolutionsController < ApplicationController
       redirect_to suite_solutions_finish_path
       return
     end
+    @task_solution.update({ started_at: Time.now })
   end
 
   def finish

@@ -1,7 +1,7 @@
 class Profiles::SuiteSolutionsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_user
-  before_action :set_suite_solution, only: [:destroy]
+  before_action :set_suite_solution, only: [:destroy, :show]
 
   def index
     @suite_solutions = SuiteSolution.includes(:suite).where(user_id: @user.id)
@@ -11,6 +11,13 @@ class Profiles::SuiteSolutionsController < ApplicationController
     @suite_solution = SuiteSolution.new({ user_id: @user.id })
     @suite_options = Suite.select(:id, :name).to_a.map {|suite| [suite.name, suite.id]}
   end
+
+  def show
+  end
+
+  def grade
+  end
+
 
   def create
     @suite_solution = SuiteSolution.new(suite_solution_params.merge({ user_id: @user.id }))

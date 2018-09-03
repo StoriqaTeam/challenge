@@ -5,6 +5,7 @@ class TaskSolution < ApplicationRecord
 
   def is_active
     return true unless started_at
+    return false if solution
     return (Time.current - started_at).minutes <= task.time
   end
 end

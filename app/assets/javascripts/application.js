@@ -10,6 +10,7 @@ $(document).ready(function () {
   challenge.bindPreviews();
   challenge.bindEditors();
   challenge.renderNotice();
+  setInterval(challenge.updateTimer, 1000);
 });
 
 challenge = {};
@@ -91,4 +92,29 @@ challenge.onRunTestsClick = function (e) {
       $('#run_tests_button').attr('disabled', false);
       alert("Error");
     });
+}
+
+
+challenge.updateTimer = function () {
+  started_elem = $('#hidden_started_at');
+  if (!started_elem.length) return;
+  time_elem = $('#hidden_time');
+  if (!time_elem.length) return;
+  timer_elem = $('#timer_display');
+  if (!timer_elem.length) return;
+  form_elem = $('#code_submit_form');
+  if (!form_elem.length) return;
+
+
+  started_at = new Date(started_elem.val());
+  time_mins = parseInt(time_elem.val(), 10);
+  now = new Date();
+  left = Math.floor((started_at - now) / 1000 / 60 + time_mins);
+  if (left < 0) {
+    form_elem.submit();
+  }
+  let message = left + " minutes left";
+  if (left == 1) message = "1 minute left";
+  if (left < 1) message = "< 1 minute left";
+  timer_elem.text(message);
 }

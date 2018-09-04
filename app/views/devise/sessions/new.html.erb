@@ -1,28 +1,8 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="centered-container">
+  <a href="/" class="big-blue-brand-logo"><%= inline_svg "logo.svg"%></a>
+  <div class="text-container">
+    <h5 class="blue-text text-lighten-1">Welcome to Storiqa testing platform!</h5>
+    <p>&nbsp</p>
+    <%= link_to raw("<i class='material-icons right'>#{inline_svg('github.svg')}</i>Sign in"), user_github_omniauth_authorize_path, class: "btn-large waves-effect blue github-button" %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
-
-<%= link_to "Sign in with Github", user_github_omniauth_authorize_path %>
+</div>

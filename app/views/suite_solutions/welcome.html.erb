@@ -1,6 +1,9 @@
-<h1>Welcome</h1>
-<% if @error_message %>
-  <div><%=@error_message%></div>
-<% else %>
-  <%= link_to 'Start', suite_solutions_go_path, class: 'btn green' %>
-<% end %>
+<div class="centered-container">
+  <% if @error_message %>
+    <div class="blue-text text-lighten-1"><h5><%=@error_message%></h5></div>
+  <% else %>
+    <div class="blue-text text-lighten-1 limited-text"><h5>You will be given a set of problems, each problem is time limited. We will try to break your solution in every possible way, so make sure your solution is safe and sound. Good luck!</h5></div>
+    <p>&nbsp;</p>
+    <%= link_to 'Get started', suite_solutions_go_path, class: 'btn-large green' %>
+  <% end %>
+</div>

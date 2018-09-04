@@ -34,3 +34,75 @@
     }  
   }
 }
+
+$logo-scale: 2;
+$gh-scale: 0.2;
+
+.centered-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 10rem);
+  width: calc(100% - 10rem);
+  position: absolute;
+  flex-direction: column;
+
+  .big-blue-brand-logo {
+    position: relative;
+    top: -10rem;
+    svg {
+      transform:scale($logo-scale); 
+      -webkit-transform:scale($logo-scale); 
+      -moz-transform:scale($logo-scale); 
+      -ms-transform:scale($logo-scale); 
+      -o-transform:scale($logo-scale);
+    } 
+  }
+
+  .limited-text {
+    max-width: 700px;
+    text-align: center;
+  }
+
+  h5 {
+    font-weight: 300;
+    line-height: 150%;
+  }
+
+  .text-container {
+    position: relative;
+    top: -1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .github-button {
+      i {
+        width: 40px;
+        position: relative;
+        top: 0.5rem;
+        // top: -50px;
+        // right: -50px;
+      }
+      svg {
+        // transform:scale($gh-scale); 
+        // -webkit-transform:scale($gh-scale); 
+        // -moz-transform:scale($gh-scale); 
+        // -ms-transform:scale($gh-scale); 
+        // -o-transform:scale($gh-scale);
+      }
+    }
+  }
+}
+
+.code-preview {
+  width: 100%;
+  height: 600px;
+  overflow: scroll;
+  padding: 1rem;
+}
+
+.timer {
+  position: relative;
+  top: 1px;
+}

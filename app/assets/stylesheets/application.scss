@@ -34,3 +34,50 @@
     }  
   }
 }
+
+$logo-scale: 2;
+$gh-scale: 0.2;
+
+.signin-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 10rem);
+  width: calc(100% - 10rem);
+  position: absolute;
+  flex-direction: column;
+
+  .big-blue-brand-logo {
+    position: relative;
+    top: -10rem;
+    svg {
+      transform:scale($logo-scale); 
+      -webkit-transform:scale($logo-scale); 
+      -moz-transform:scale($logo-scale); 
+      -ms-transform:scale($logo-scale); 
+      -o-transform:scale($logo-scale);
+    } 
+  }
+
+  .text-container {
+    position: relative;
+    top: -1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h5 {
+      font-weight: 300;
+    }
+
+    .github-button {
+      svg {
+        transform:scale($gh-scale); 
+        -webkit-transform:scale($gh-scale); 
+        -moz-transform:scale($gh-scale); 
+        -ms-transform:scale($gh-scale); 
+        -o-transform:scale($gh-scale);
+      }
+    }
+  }
+}

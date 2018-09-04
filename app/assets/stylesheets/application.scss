@@ -59,8 +59,14 @@ $gh-scale: 0.2;
     } 
   }
 
+  .limited-text {
+    max-width: 700px;
+    text-align: center;
+  }
+
   h5 {
     font-weight: 300;
+    line-height: 150%;
   }
 
   .text-container {

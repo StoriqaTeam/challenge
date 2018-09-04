@@ -1,6 +1,7 @@
-<h1>Welcome</h1>
-<% if @error_message %>
-  <div><%=@error_message%></div>
-<% else %>
-  <%= link_to 'Start', suite_solutions_go_path, class: 'btn green' %>
-<% end %>
+<div class="centered-container">
+  <% if @error_message %>
+    <div class="blue-text text-lighten-1"><h5><%=@error_message%></h5></div>
+  <% else %>
+    <%= link_to 'Start', suite_solutions_go_path, class: 'btn green' %>
+  <% end %>
+</div>

@@ -3,6 +3,6 @@
   <div class="text-container">
     <h5 class="blue-text text-lighten-1">Welcome to Storiqa testing platform!</h5>
     <p>&nbsp</p>
-    <%= link_to "Sign in with Github", user_github_omniauth_authorize_path, class: "btn-large waves-effect blue" %>
+    <%= link_to raw("<i class='material-icons right'>#{inline_svg('github.svg')}</i>Sign in"), user_github_omniauth_authorize_path, class: "btn-large waves-effect blue github-button" %>
   </div>
 </div>

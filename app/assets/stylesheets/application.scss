@@ -71,12 +71,19 @@ $gh-scale: 0.2;
     }
 
     .github-button {
+      i {
+        width: 40px;
+        position: relative;
+        top: 0.5rem;
+        // top: -50px;
+        // right: -50px;
+      }
       svg {
-        transform:scale($gh-scale); 
-        -webkit-transform:scale($gh-scale); 
-        -moz-transform:scale($gh-scale); 
-        -ms-transform:scale($gh-scale); 
-        -o-transform:scale($gh-scale);
+        // transform:scale($gh-scale); 
+        // -webkit-transform:scale($gh-scale); 
+        // -moz-transform:scale($gh-scale); 
+        // -ms-transform:scale($gh-scale); 
+        // -o-transform:scale($gh-scale);
       }
     }
   }

@@ -50,7 +50,7 @@ class JavascriptRunner < Runner
           }        
         ')
       end
-      output = `docker run -v #{root}:/app lok814/babel-node:1.0 babel-node /app/index.js 2>&1`
+      output = `docker run --rm -v #{root}:/app lok814/babel-node:1.0 babel-node /app/index.js 2>&1`
     end
     output
   end

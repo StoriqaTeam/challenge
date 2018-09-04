@@ -14,8 +14,8 @@
     <span>Score:&nbsp</span>
     <span><%=task_solution.score%></span>
     <br />
-    <%= hidden_field :code_preview, :preview, value: "```\n#{task_solution.solution}\n```", data: {preview: "code_preview"} %>
-    <div id="code_preview" class="code-preview"></div>
+    <%= hidden_field :code_preview, :preview, value: "```\n#{task_solution.solution}\n```", data: {preview: "code_preview_#{task_solution.id}"} %>
+    <div id="code_preview_<%= task_solution.id%>" class="code-preview"></div>
     <br />
   <%end%>
   <span>Total score:&nbsp</span>

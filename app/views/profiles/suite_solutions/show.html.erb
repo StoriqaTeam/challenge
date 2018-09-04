@@ -13,7 +13,10 @@
     <%end%>
     <span>Score:&nbsp</span>
     <span><%=task_solution.score%></span>
-    <br /> 
+    <br />
+    <%= hidden_field :code_preview, :preview, value: "```\n#{task_solution.solution}\n```", data: {preview: "code_preview"} %>
+    <div id="code_preview" class="code-preview"></div>
+    <br />
   <%end%>
   <span>Total score:&nbsp</span>
   <span><%=@suite_solution.score%></span>    

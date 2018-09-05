@@ -14,6 +14,10 @@
         <%= label_tag(:time, "Time in minutes") %>
       </div>
       <div class="input-field">
+        <%= form.text_field :number_of_tests %>
+        <%= label_tag(:number_of_tests, "Number of tests") %>
+      </div>
+      <div class="input-field">
         <%= form.text_area :description, class: "materialize-textarea", data: {preview: "description_preview"} %>
         <%= label_tag(:description, "Description") %>
       </div>

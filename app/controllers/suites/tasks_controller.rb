@@ -4,7 +4,7 @@ class Suites::TasksController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @tasks = @suite.tasks
+    @tasks = @suite.tasks.sort_by(&:updated_at).reverse
   end
 
   def new

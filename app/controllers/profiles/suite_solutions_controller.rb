@@ -4,7 +4,7 @@ class Profiles::SuiteSolutionsController < ApplicationController
   before_action :set_suite_solution, only: [:destroy, :show, :grade]
 
   def index
-    @suite_solutions = SuiteSolution.includes(:suite).where(user_id: @user.id)
+    @suite_solutions = SuiteSolution.includes(:suite).where(user_id: @user.id).order(updated_at: :desc)
   end
 
   def new

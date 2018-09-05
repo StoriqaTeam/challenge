@@ -5,7 +5,7 @@ class SuitesController < ApplicationController
   # GET /suites
   # GET /suites.json
   def index
-    @suites = Suite.all
+    @suites = Suite.all.order(updated_at: :desc)
   end
 
   # GET /suites/1

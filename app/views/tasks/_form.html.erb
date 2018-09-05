@@ -28,6 +28,11 @@
       <%= form.hidden_field(:initial) %>
       <br />
 
+      <%= label_tag(:reference_solution, "Reference solution") %>
+      <div id = "reference_solution_editor" data-input = "task_reference_solution" data-editor = "<%= @task.language || @languages.first %>" style="width: 100%; height: 400px;"></div>
+      <%= form.hidden_field(:reference_solution) %>
+      <br />
+
       <%= label_tag(:initial_tests, "Initial tests") %>
       <div id = "initial_tests_editor" data-input = "task_initial_tests" data-editor = "<%= @task.language || @languages.first %>" style="width: 100%; height: 400px;"></div>
       <%= form.hidden_field(:initial_tests) %>

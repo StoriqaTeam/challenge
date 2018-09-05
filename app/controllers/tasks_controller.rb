@@ -71,7 +71,7 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :description, :time, :tests, :language, :runtime, :initial, :initial_tests, :reference_solution)
+      params.require(:task).permit(:title, :description, :time, :tests, :language, :runtime, :initial, :initial_tests, :reference_solution, :number_of_tests)
     end
 
     def set_languages

@@ -1,6 +1,5 @@
 class TaskSolutionsController < ApplicationController
   before_action :set_task_solution, only: [:update, :run_tests]
-  skip_before_filter :verify_authenticity_token, :only => [:run_tests]
 
   def run_tests
     language = @task_solution.task.language

@@ -11,13 +11,27 @@ class Runner
     raise "Called Runner.run, but Runner is abscract class"
   end 
 
+  def run_docker(command)
+    output = ""
+    container_name = SecureRandom.hex
+    begin
+      Timeout::timeout(5) do
+        `docker run --name #{container_name} #{command}`
+      end
+    rescue Timeout::Error => e
+      puts "Exception, yo!"
+      `docker stop #{container_name}`
+    end
+    output = `docker logs #{container_name}`
+    `docker rm #{container_name}`
+    output
+  end
+
   def self.grade(task_solution)
     runner = self.from_lang(task_solution.task.language)
     program = task_solution.task.runtime + "\n" + task_solution.solution + "\n" + task_solution.task.tests
     res = []
     output = runner.run(program)
-    puts "Output:"
-    p output
     output.split("\n").each do |line|
       matches = GRADE_REGEX.match(line)
       if matches
@@ -47,15 +61,12 @@ class JavascriptRunner < Runner
         file.write('
           {
             "presets": ["es2015"]
-          }        
+          }
         ')
       end
-      output = `docker run --rm -v #{root}:/app lok814/babel-node:1.0 babel-node /app/index.js 2>&1`
+      output = run_docker("-v #{root}:/app lok814/babel-node:1.0 babel-node /app/index.js 2>&1")
     end
     output
-  end
-
-  def grade(task_solution, program)
   end
 end
 

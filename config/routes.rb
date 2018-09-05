@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
   resources :tasks
   resources :task_solutions, only: [:update]
-  resources :users, only: [:index, :show, :edit, :update, :destroy], path: :profiles do
+  resources :users, path: :profiles do
     resources :suite_solutions, only: [:index, :new, :create, :destroy, :show], controller: "profiles/suite_solutions"
     get '/grade/:id', to: "profiles/suite_solutions#grade", as: :suite_solutions_grade
   end

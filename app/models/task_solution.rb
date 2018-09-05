@@ -19,6 +19,7 @@ class TaskSolution < ApplicationRecord
   def score
     successes = task_solution_results.select(&:passed).count
     total = task.number_of_tests
+    return 0 unless total
     return 0 if total == 0
     (successes.to_f / total.to_f * 100).to_i
   end

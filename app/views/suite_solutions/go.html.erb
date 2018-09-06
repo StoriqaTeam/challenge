@@ -20,7 +20,7 @@
         <%= form.hidden_field(:tests) %>
         <br />
         <div class="actions right">
-          <%= hidden_field :hidden, :started_at, value: @task_solution.started_at%>
+          <%= hidden_field :hidden, :started_at, value: @task_solution.started_at.rfc2822%>
           <%= hidden_field :hidden, :time, value: @task_solution.task.time%>
           <div class="btn disabled timer" id="timer_display"></div>
           <%= button_tag "Run tests", id:"run_tests_button", class: "btn blue", onclick: "challenge.onRunTestsClick(event)" %>

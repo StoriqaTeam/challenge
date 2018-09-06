@@ -19,10 +19,9 @@ class Runner
         `docker run --name #{container_name} #{command}`
       end
     rescue Timeout::Error => e
-      puts "Exception, yo!"
       `docker stop #{container_name}`
     end
-    output = `docker logs #{container_name}`
+    output = `docker logs #{container_name} 2>&1`
     `docker rm #{container_name}`
     output
   end
@@ -64,7 +63,7 @@ class JavascriptRunner < Runner
           }
         ')
       end
-      output = run_docker("-v #{root}:/app lok814/babel-node:1.0 babel-node /app/index.js 2>&1")
+      output = run_docker("-v #{root}:/app lok814/babel-node:1.0 babel-node /app/index.js")
     end
     output
   end

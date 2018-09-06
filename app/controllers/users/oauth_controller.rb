@@ -3,7 +3,7 @@ class Users::OauthController < Devise::OmniauthCallbacksController
     # You need to implement the method below in your model (e.g. app/models/user.rb)
     new_user = User.from_omniauth(request.env["omniauth.auth"])
     new_user.password = SecureRandom.hex
-    user = User.where(uid: new_user.uid, provider: new_user.provider).first
+    user = User.where(email: new_user.email, provider: new_user.provider).first
     @user = if user
       user
     else

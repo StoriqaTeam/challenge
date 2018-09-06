@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.provider = 'github'
     @user.password = SecureRandom.hex
 
     respond_to do |format|

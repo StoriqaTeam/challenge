@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Email</th>
+      <th>Name</th>
       <th>Role</th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.email %></td>
+        <td><%= user.name %></td>
         <td><%= user.role %></td>
         <td>
           <%= link_to 'Tests', user_suite_solutions_path(user), class: "btn green" %>

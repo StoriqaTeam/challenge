@@ -70,4 +70,27 @@ class JavascriptRunner < Runner
 end
 
 class RustRunner < Runner
+  def run(program)
+    output = ""
+    Dir.mktmpdir do |root|
+      Dir.mkdir("#{root}/src")
+      open("#{root}/src/main.rs", "w") do |file|
+        file.write(program)
+      end
+      open("#{root}/Cargo.toml", "w") do |file|
+        file.write(
+          <<-CONTENTS
+            [package]
+            name = "task"
+            version = "0.1.0"
+            authors = ["Noname"]
+            
+            [dependencies]
+          CONTENTS
+        )
+      end
+      output = run_docker("-v #{root}:/app -w='/app' rust:1.28 cargo run")
+    end
+    output
+  end
 end

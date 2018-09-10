@@ -51,46 +51,40 @@ GRADE_REGEX = /(.*): (ok|fail)/i
 
 class JavascriptRunner < Runner
   def run(program)
-    output = ""
-    Dir.mktmpdir do |root|
-      open("#{root}/index.js", "w") do |file|
-        file.write(program)
-      end
-      open("#{root}/.babelrc", "w") do |file|
-        file.write('
-          {
-            "presets": ["es2015"]
-          }
-        ')
-      end
-      output = run_docker("-v #{root}:/app lok814/babel-node:1.0 babel-node /app/index.js")
+    root = Dir.mktmpdir
+    open("#{root}/index.js", "w") do |file|
+      file.write(program)
     end
-    output
+    open("#{root}/.babelrc", "w") do |file|
+      file.write('
+        {
+          "presets": ["es2015"]
+        }
+      ')
+    end
+    run_docker("-v #{root}:/app lok814/babel-node:1.0 babel-node /app/index.js")
   end
 end
 
 class RustRunner < Runner
   def run(program)
-    output = ""
-    Dir.mktmpdir do |root|
-      Dir.mkdir("#{root}/src")
-      open("#{root}/src/main.rs", "w") do |file|
-        file.write(program)
-      end
-      open("#{root}/Cargo.toml", "w") do |file|
-        file.write(
-          <<-CONTENTS
-            [package]
-            name = "task"
-            version = "0.1.0"
-            authors = ["Noname"]
-            
-            [dependencies]
-          CONTENTS
-        )
-      end
-      output = run_docker("-v #{root}:/app -w='/app' rust:1.28 cargo run")
+    root = Dir.mktmpdir
+    Dir.mkdir("#{root}/src")
+    open("#{root}/src/main.rs", "w") do |file|
+      file.write(program)
     end
-    output
+    open("#{root}/Cargo.toml", "w") do |file|
+      file.write(
+        <<-CONTENTS
+          [package]
+          name = "task"
+          version = "0.1.0"
+          authors = ["Noname"]
+          
+          [dependencies]
+        CONTENTS
+      )
+    end
+    run_docker("-v #{root}:/app -w='/app' rust:1.28 cargo run")
   end
 end

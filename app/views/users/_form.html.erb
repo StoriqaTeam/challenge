@@ -2,6 +2,9 @@
   <%= label_tag(:email, "Email") %>
   <%= form.text_field :email %>
 
+  <%= label_tag(:name, "Name") %>
+  <%= form.text_field :name %>
+
   <%= label_tag(:role, "User's role") %>
   <%= form.text_field :role %>
   <% if user.errors.any? %>

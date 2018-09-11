@@ -12,9 +12,13 @@
   <% end %>
 
   <div class="input-field">
-  <%= form.select :task_id, @task_options %>
-  <%= label_tag(:task_id, "Task") %>
-</div>
+    <%= form.select :task_id, @task_options %>
+    <%= label_tag(:task_id, "Task") %>
+  </div>
+  <div class="input-field">
+    <%= form.text_field :priority %>
+    <%= label_tag(:priority, "Priority") %>
+  </div>
 
   <div class="actions">
     <%= form.submit "Submit", class: "btn" %>

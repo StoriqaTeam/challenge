@@ -6,16 +6,18 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Priority</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @tasks.each do |task| %>
+    <% @suite_tasks.each do |suite_task| %>
       <tr>
-        <td><%= task.title %></td>
+        <td><%= suite_task.task.title %></td>
+        <td><%= suite_task.priority %></td>
         <td>
-          <%= link_to 'Delete', suite_task_path(@suite, task), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn red" %>
+          <%= link_to 'Delete', suite_task_path(@suite, suite_task.task), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn red" %>
         </td>
       </tr>
     <% end %>

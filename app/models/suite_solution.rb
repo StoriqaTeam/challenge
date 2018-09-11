@@ -5,7 +5,9 @@ class SuiteSolution < ApplicationRecord
   after_save :create_task_solutions
 
   def active_task_solutions
-    task_solutions.select(&:is_active)
+    task_solutions.select(&:is_active).sort_by do |task_solution|
+      task_solution_priority(task_solution)
+    end
   end
 
   def score
@@ -24,6 +26,10 @@ class SuiteSolution < ApplicationRecord
   end
 
   private
+    def task_solution_priority(task_solution)
+      SuiteTask.where(task_id: task_solution.task.id, suite_id: suite.id).first&.priority
+    end
+
     def create_task_solutions
       task_ids = task_solutions.map { |solution| solution.task_id }
       suite_task_ids = suite.tasks.map { |task| task.id }

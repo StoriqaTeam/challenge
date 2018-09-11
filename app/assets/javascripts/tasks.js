@@ -20,5 +20,6 @@ const langToAceLang = {
   rust: "rust",
   swift: "swift",
   kotlin: "kotlin",
-  java: "java"
+  java: "java",
+  golang: "golang"
 }

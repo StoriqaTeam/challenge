@@ -4,6 +4,8 @@ class Runner
       return JavascriptRunner.new
     elsif lang == 'rust'
       return RustRunner.new
+    elsif lang == 'golang'
+      return GoRunner.new
     end
   end
 
@@ -22,6 +24,7 @@ class Runner
       `docker stop #{container_name}`
     end
     output = `docker logs #{container_name} 2>&1`
+    output += "\n -----------------"
     `docker rm #{container_name}`
     `rm -rf #{root}`
     output
@@ -87,5 +90,15 @@ class RustRunner < Runner
       )
     end
     run_docker("-v #{root}:/app -w='/app' rust:1.28 cargo run", root)
+  end
+end
+
+class GoRunner < Runner
+  def run(program)
+    root = Dir.mktmpdir
+    open("#{root}/main.go", "w") do |file|
+      file.write(program)
+    end
+    run_docker("-v #{root}:/app -w='/app' golang:1.11 go run main.go", root)
   end
 end

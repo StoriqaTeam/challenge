@@ -75,6 +75,6 @@ class TasksController < ApplicationController
     end
 
     def set_languages
-      @languages ||= [["Rust", "rust"], ["JavaScript", "javascript"], ["Swift", "swift"], ["Kotlin", "kotlin"], ["Java", "java"]]
+      @languages ||= [["Rust", "rust"], ["JavaScript", "javascript"], ["Swift", "swift"], ["Kotlin", "kotlin"], ["Java", "java"], ["Go", "golang"]]
     end
 end

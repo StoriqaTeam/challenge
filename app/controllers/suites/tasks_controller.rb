@@ -4,7 +4,7 @@ class Suites::TasksController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @tasks = @suite.tasks.sort_by(&:updated_at).reverse
+    @suite_tasks = @suite.suite_tasks.sort_by(&:priority)
   end
 
   def new
@@ -47,6 +47,6 @@ class Suites::TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def suite_task_params
-      params.require(:suite_task).permit(:task_id)
+      params.require(:suite_task).permit(:task_id, :priority)
     end
 end

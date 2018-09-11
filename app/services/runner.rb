@@ -11,7 +11,7 @@ class Runner
     raise "Called Runner.run, but Runner is abscract class"
   end 
 
-  def run_docker(command)
+  def run_docker(command, root)
     output = ""
     container_name = SecureRandom.hex
     begin
@@ -23,6 +23,7 @@ class Runner
     end
     output = `docker logs #{container_name} 2>&1`
     `docker rm #{container_name}`
+    `rm -rf #{root}`
     output
   end
 
@@ -62,7 +63,7 @@ class JavascriptRunner < Runner
         }
       ')
     end
-    run_docker("-v #{root}:/app lok814/babel-node:1.0 babel-node /app/index.js")
+    run_docker("-v #{root}:/app lok814/babel-node:1.0 babel-node /app/index.js", root)
   end
 end
 
@@ -85,6 +86,6 @@ class RustRunner < Runner
         CONTENTS
       )
     end
-    run_docker("-v #{root}:/app -w='/app' rust:1.28 cargo run")
+    run_docker("-v #{root}:/app -w='/app' rust:1.28 cargo run", root)
   end
 end

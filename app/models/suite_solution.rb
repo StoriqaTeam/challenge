@@ -18,9 +18,11 @@ class SuiteSolution < ApplicationRecord
   end
 
   def grade
+    return if graded
+    self.graded = true
+    save!
     ActiveRecord::Base.transaction do
       task_solutions.each {|task_solution| task_solution.grade}
-      self.graded = true
       save!
     end
   end

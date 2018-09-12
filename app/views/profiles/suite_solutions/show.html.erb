@@ -1,6 +1,6 @@
 <%unless @suite_solution.graded%>
   <p>This solution is not graded</p>
-  <%= link_to 'Grade now', user_suite_solutions_grade_path(@user.id, @suite_solution), class: "btn"%>
+  <%= link_to 'Grade now', user_suite_solutions_grade_path(@user.id, @suite_solution), class: "btn", :onclick => "event.target.classList.add('disabled')"%>
 <%else%>
   <h3><%=@suite_solution.suite.name%> for `<%=@user.email%>`</h3>
   <p>created at `<%= @suite_solution.created_at %>`</p>

@@ -6,6 +6,8 @@ class Runner
       return RustRunner.new
     elsif lang == 'golang'
       return GoRunner.new
+    elsif lang == 'java'
+      return JavaRunner.new
     end
   end
 
@@ -100,5 +102,15 @@ class GoRunner < Runner
       file.write(program)
     end
     run_docker("-v #{root}:/app -w='/app' golang:1.11 go run main.go", root)
+  end
+end
+
+class JavaRunner < Runner
+  def run(program)
+    root = Dir.mktmpdir
+    open("#{root}/Main.java", "w") do |file|
+      file.write(program)
+    end
+    run_docker("-v #{root}:/app -w='/app' java:8 sh -c \"javac Main.java && java Main\"", root)
   end
 end

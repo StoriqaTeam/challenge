@@ -10,7 +10,7 @@ class User < ApplicationRecord
   def self.from_omniauth(data)
     if data["provider"] == "github"
       u = User.new
-      u.email = data.dig("info", "email")
+      u.email = data.dig("info", "email")&.downcase
       u.provider = "github"
       u.uid = data["uid"]
       u

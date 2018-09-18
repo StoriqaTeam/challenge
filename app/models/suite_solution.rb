@@ -17,6 +17,13 @@ class SuiteSolution < ApplicationRecord
     (score.to_f / count.to_f).to_i
   end
 
+  def started_at
+    solutions = task_solutions.select { |task_solution| task_solution.submitted }
+    return nil if solutions.empty?
+    solution = solutions.min_by { |task_solution| task_solution.updated_at }
+    solution.updated_at
+  end
+
   def grade
     return if graded
     self.graded = true

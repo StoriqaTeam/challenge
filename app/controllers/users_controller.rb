@@ -5,7 +5,11 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all.order(updated_at: :desc)
+    @users_with_solution_dates = User.all.order(updated_at: :desc).map do |user|
+      last_solution_date = user.suite_solutions.map(&:created_at).select { |created_at| created_at }.max
+      last_solution_date = last_solution_date ? last_solution_date.to_formatted_s(:long_ordinal) : "Not started"
+      { user: user, solution_date: last_solution_date }
+    end
   end
 
   # GET /users/new

@@ -9,7 +9,6 @@
       <th>Name</th>
       <th>Role</th>
       <th>Sign up date</th>
-      <th>Test date</th>
     </tr>
   </thead>
 
@@ -20,7 +19,6 @@
         <td><%= users_with_solution_date[:user].name %></td>
         <td><%= users_with_solution_date[:user].role %></td>
         <td><%= users_with_solution_date[:user].created_at.to_formatted_s(:long_ordinal) %></td>
-        <td><%= users_with_solution_date[:solution_date] || "Not started" %></td>
         <td>
           <%= link_to 'Tests', user_suite_solutions_path(users_with_solution_date[:user]), class: "btn green" %>
           <%= link_to 'Edit', edit_user_path(users_with_solution_date[:user]), class: "btn blue" %>
